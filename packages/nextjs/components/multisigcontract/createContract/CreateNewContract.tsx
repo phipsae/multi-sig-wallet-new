@@ -58,7 +58,7 @@ export const CreateNewContract = () => {
                 {isLoadingCreateContract ? (
                   <span className="loading loading-spinner text-primary"></span>
                 ) : (
-                  `Create Contract with ${confirmations} confirmations`
+                  `Create Contract with ${Number(confirmations)} confirmations`
                 )}
               </button>
               <button
