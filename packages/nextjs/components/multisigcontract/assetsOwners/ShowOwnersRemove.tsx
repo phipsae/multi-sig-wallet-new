@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useContractRead, useContractWrite, useWaitForTransaction } from "wagmi";
-import { CheckIcon, TrashIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Spinner } from "~~/components/assets/Spinner";
+import { useEffect } from "react";
+import { useContractRead } from "wagmi";
+// import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+// import { Spinner } from "~~/components/assets/Spinner";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 
 export const ShowOwnersRemove = (multiSigWalletAddress: any) => {
-  const [OwnerBeRemoved, setOwnerBeRemoved] = useState("");
+  // const [OwnerBeRemoved, setOwnerBeRemoved] = useState("");
 
   const { data: multiSigWallet } = useScaffoldContract({
     contractName: "MultiSigWallet",
@@ -19,32 +19,32 @@ export const ShowOwnersRemove = (multiSigWalletAddress: any) => {
     functionName: "getOwners",
   });
 
-  const { data: creator } = useContractRead({
-    address: multiSigWalletAddress.multiSigWalletAddress,
-    abi: multiSigWallet?.abi,
-    functionName: "creator",
-  });
+  // const { data: creator } = useContractRead({
+  //   address: multiSigWalletAddress.multiSigWalletAddress,
+  //   abi: multiSigWallet?.abi,
+  //   functionName: "creator",
+  // });
 
-  const { data: dataRemoveOwner, write: removeOwner } = useContractWrite({
-    address: multiSigWalletAddress.multiSigWalletAddress,
-    abi: multiSigWallet?.abi,
-    functionName: "removeOwner",
-  });
+  // const { data: dataRemoveOwner, write: removeOwner } = useContractWrite({
+  //   address: multiSigWalletAddress.multiSigWalletAddress,
+  //   abi: multiSigWallet?.abi,
+  //   functionName: "removeOwner",
+  // });
 
-  const { isLoading: isLoadingRemoveOwnerWait, isSuccess: isSuccessremoveOwnerWait } = useWaitForTransaction({
-    hash: dataRemoveOwner?.hash,
-  });
+  // const { isLoading: isLoadingRemoveOwnerWait, isSuccess: isSuccessremoveOwnerWait } = useWaitForTransaction({
+  //   hash: dataRemoveOwner?.hash,
+  // });
 
   useEffect(() => {
-    if (multiSigWallet?.abi && isSuccessremoveOwnerWait) {
+    if (multiSigWallet?.abi) {
       console.log("Transaction successful!");
       notification.success("Signer successfully removed");
       refetchGetOwners();
     }
-    if (multiSigWallet?.abi && isLoadingRemoveOwnerWait) {
+    if (multiSigWallet?.abi) {
       notification.success("Waiting for transaction confirmation", { icon: "⏱️" });
     }
-  }, [isSuccessremoveOwnerWait, refetchGetOwners, multiSigWallet?.abi, isLoadingRemoveOwnerWait]);
+  }, [refetchGetOwners, multiSigWallet?.abi]);
 
   return (
     <>
@@ -77,7 +77,7 @@ export const ShowOwnersRemove = (multiSigWalletAddress: any) => {
                           <Address address={owner} />
                         </td>
                         <td className="text-left">
-                          <button
+                          {/* <button
                             // disabled={!write}
                             hidden={creator == owner}
                             disabled={!removeOwner}
@@ -86,10 +86,10 @@ export const ShowOwnersRemove = (multiSigWalletAddress: any) => {
                             }}
                           >
                             <TrashIcon className="h-4 w-4" />
-                          </button>
+                          </button> */}
                         </td>
                         <td className="text-left">
-                          <button
+                          {/* <button
                             // disabled={!write}
                             hidden={OwnerBeRemoved != owner || creator == owner}
                             disabled={!removeOwner}
@@ -104,20 +104,20 @@ export const ShowOwnersRemove = (multiSigWalletAddress: any) => {
                             ) : (
                               <CheckIcon className="h-4 w-4" />
                             )}
-                          </button>
-                          {isLoadingRemoveOwnerWait ? (
-                            ""
-                          ) : (
-                            <button
-                              hidden={OwnerBeRemoved != owner || creator == owner}
-                              disabled={!removeOwner}
-                              onClick={() => {
-                                setOwnerBeRemoved("");
-                              }}
-                            >
-                              <XMarkIcon className="h-4 w-4" />
-                            </button>
-                          )}
+                          </button> */}
+                          {/* {isLoadingRemoveOwnerWait
+                            ? ""
+                            : "huhu"
+                              // <button
+                              //   hidden={OwnerBeRemoved != owner || creator == owner}
+                              //   disabled={!removeOwner}
+                              //   onClick={() => {
+                              //     setOwnerBeRemoved("");
+                              //   }}
+                              // >
+                              //   <XMarkIcon className="h-4 w-4" />
+                              // </button>
+                          } */}
                         </td>
                       </tr>
                     );

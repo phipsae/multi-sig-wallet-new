@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     MultiSigFactory: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
       abi: [
         {
           anonymous: false,
@@ -35,6 +35,11 @@ const deployedContracts = {
               name: "_requiredConfirmations",
               type: "uint256",
             },
+            {
+              internalType: "address[]",
+              name: "_signers",
+              type: "address[]",
+            },
           ],
           name: "createContract",
           outputs: [],
@@ -47,11 +52,6 @@ const deployedContracts = {
           outputs: [
             {
               components: [
-                {
-                  internalType: "address",
-                  name: "owner",
-                  type: "address",
-                },
                 {
                   internalType: "address",
                   name: "contractAddress",
@@ -93,11 +93,6 @@ const deployedContracts = {
           outputs: [
             {
               internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-            {
-              internalType: "address",
               name: "contractAddress",
               type: "address",
             },
@@ -128,42 +123,6 @@ const deployedContracts = {
           stateMutability: "view",
           type: "function",
         },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_contractAddress",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "_signerToRemove",
-              type: "address",
-            },
-          ],
-          name: "removeSigners",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_contractAddress",
-              type: "address",
-            },
-            {
-              internalType: "address[]",
-              name: "_newSigners",
-              type: "address[]",
-            },
-          ],
-          name: "updateSigners",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
       ],
     },
     MultiSigWallet: {
@@ -172,9 +131,9 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "address",
-              name: "_creator",
-              type: "address",
+              internalType: "address[]",
+              name: "_owners",
+              type: "address[]",
             },
             {
               internalType: "uint256",
@@ -308,19 +267,6 @@ const deployedContracts = {
           ],
           name: "SubmitTransaction",
           type: "event",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_owner",
-              type: "address",
-            },
-          ],
-          name: "addOwner",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
         },
         {
           inputs: [
@@ -565,19 +511,6 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_owner",
-              type: "address",
-            },
-          ],
-          name: "removeOwner",
-          outputs: [],
-          stateMutability: "nonpayable",
           type: "function",
         },
         {

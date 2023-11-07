@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import './IMultiSigFactory.sol';
-import "hardhat/console.sol";
-
-
 contract MultiSigWallet {
     event Deposit(address indexed sender, uint amount, uint balance);
     event SubmitTransaction(
@@ -42,11 +38,6 @@ contract MultiSigWallet {
         _;
     }
 
-    modifier onlyCreator() {
-        require(creator == msg.sender, "not creator");
-        _;
-    }
-
     modifier txExists(uint _txIndex) {
         require(_txIndex < transactions.length, "tx does not exist");
         _;
@@ -62,57 +53,26 @@ contract MultiSigWallet {
         _;
     }
 
-    constructor(address _creator, uint _numConfirmationsRequired, address _factoryAddress) {
+    constructor(address[] memory _owners, uint _numConfirmationsRequired, address _factoryAddress) {
+        require(_owners.length > 0, "owners required");
         require(
-            _numConfirmationsRequired > 0,
+            _numConfirmationsRequired > 0 &&
+                _numConfirmationsRequired <= _owners.length,
             "invalid number of required confirmations"
         );
 
-        isOwner[_creator] = true;
-        owners.push(_creator);
-        creator = _creator;
-        factoryAddress = _factoryAddress;
+        for (uint i = 0; i < _owners.length; i++) {
+            address owner = _owners[i];
+
+            require(owner != address(0), "invalid owner");
+            require(!isOwner[owner], "owner not unique");
+
+            isOwner[owner] = true;
+            owners.push(owner);
+            factoryAddress = _factoryAddress;
+        }
 
         numConfirmationsRequired = _numConfirmationsRequired;
-    }
-
-    // add and remove Owners, only creator can do
-    function addOwner(address _owner) public onlyCreator {
-        require(_owner != address(0), "zero address...");
-        for (uint256 index = 0; index < owners.length; index++) {
-            require(owners[index] != _owner, "address already added");
-        }
-        owners.push(_owner);
-        isOwner[_owner] = true;
-
-        console.log("Address: ", address(this));
-        console.log("FactoryAddress: ", factoryAddress);
-        
-        
-        IMultiSigFactory(factoryAddress).updateSigners(address(this), owners);
-        // emit OwnerAdded(_owner);
-    }
-
-    function remove(uint _index) internal {
-        require(_index < owners.length, "index out of bound");
-        for (uint i = _index; i < owners.length - 1; i++) {
-            owners[i] = owners[i + 1];
-        }
-        owners.pop();
-        
-    }
-
-    function removeOwner(address _owner) public onlyCreator {
-        require(_owner != creator, "you cannot remove creator");
-        require(_owner != address(0), "zero address..");
-        for (uint256 index = 0; index < owners.length; index++) {
-            if (owners[index] == _owner) {
-                console.log(index);
-                remove(index);
-            }
-        }
-        isOwner[_owner] = false;
-         IMultiSigFactory(factoryAddress).removeSigners(address(this), _owner);
     }
 
     receive() external payable {

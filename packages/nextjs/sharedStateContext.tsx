@@ -12,6 +12,12 @@ interface SharedStateContextProps {
   setMyAddress: (value: string) => void;
   selectedRowIndex: string | null;
   setSelectedRowIndex: (value: string | null) => void;
+  confirmationsSet: boolean;
+  setConfirmationsSet: (value: boolean) => void;
+  confirmations: number;
+  setConfirmations: (value: number) => void;
+  signers: string[];
+  setSigners: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const SharedStateContext = createContext<SharedStateContextProps | undefined>(undefined);
@@ -22,6 +28,9 @@ export const SharedStateProvider: React.FC<{ children: ReactNode }> = ({ childre
   const [walletConnected, setWalletConnected] = useState<boolean>(false);
   const [myAddress, setMyAddress] = useState<string>("");
   const [selectedRowIndex, setSelectedRowIndex] = useState<string | null>(null);
+  const [confirmationsSet, setConfirmationsSet] = useState<boolean>(false);
+  const [confirmations, setConfirmations] = useState<number>(0);
+  const [signers, setSigners] = useState<string[]>([]);
 
   return (
     <SharedStateContext.Provider
@@ -36,6 +45,12 @@ export const SharedStateProvider: React.FC<{ children: ReactNode }> = ({ childre
         setMyAddress,
         selectedRowIndex,
         setSelectedRowIndex,
+        confirmationsSet,
+        setConfirmationsSet,
+        confirmations,
+        setConfirmations,
+        signers,
+        setSigners,
       }}
     >
       {children}

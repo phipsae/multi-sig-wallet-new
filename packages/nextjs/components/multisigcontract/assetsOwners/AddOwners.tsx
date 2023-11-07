@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { AddressInput } from "../../scaffold-eth";
-import { useContractRead, useContractWrite, useWaitForTransaction } from "wagmi";
-import { Spinner } from "~~/components/assets/Spinner";
+import { useContractRead } from "wagmi";
+// import { Spinner } from "~~/components/assets/Spinner";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 
@@ -19,41 +19,41 @@ export const AddOwners = (multiSigWalletAddress: any) => {
     functionName: "getOwners",
   });
 
-  const {
-    data: dataAddOwner,
-    isError: isErrorAddOwner,
-    write: addOwner,
-  } = useContractWrite({
-    address: multiSigWalletAddress.multiSigWalletAddress,
-    abi: multiSigWallet?.abi,
-    functionName: "addOwner",
-  });
+  // const {
+  //   data: dataAddOwner,
+  //   isError: isErrorAddOwner,
+  //   write: addOwner,
+  // } = useContractWrite({
+  //   address: multiSigWalletAddress.multiSigWalletAddress,
+  //   abi: multiSigWallet?.abi,
+  //   functionName: "addOwner",
+  // });
 
-  const { isLoading: isLoadingAddOwnerWait, isSuccess: isSuccessAddOwnerWait } = useWaitForTransaction({
-    hash: dataAddOwner?.hash,
-  });
+  // const { isLoading: isLoadingAddOwnerWait, isSuccess: isSuccessAddOwnerWait } = useWaitForTransaction({
+  //   hash: dataAddOwner?.hash,
+  // });
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    addOwner({ args: [newAddress] });
-    console.log("Input value submitted:", newAddress);
-  };
+  // const handleSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   addOwner({ args: [newAddress] });
+  //   console.log("Input value submitted:", newAddress);
+  // };
 
   useEffect(() => {
-    if (multiSigWallet?.abi && isSuccessAddOwnerWait) {
+    if (multiSigWallet?.abi) {
       notification.success("Signer successfully added", {
         icon: "🎉",
       });
       refetchGetOwners();
     }
-    if (multiSigWallet?.abi && isLoadingAddOwnerWait) {
+    if (multiSigWallet?.abi) {
       notification.success("Waiting for transaction confirmation", { icon: "⏱️" });
     }
-    if (multiSigWallet?.abi && isErrorAddOwner) {
+    if (multiSigWallet?.abi) {
       notification.error("Signer already added");
       refetchGetOwners();
     }
-  }, [isSuccessAddOwnerWait, refetchGetOwners, multiSigWallet?.abi, isErrorAddOwner, isLoadingAddOwnerWait]);
+  }, [refetchGetOwners, multiSigWallet?.abi]);
 
   return (
     <>
@@ -67,7 +67,7 @@ export const AddOwners = (multiSigWalletAddress: any) => {
               onChange={newAddress => setNewAddress(newAddress)}
             />
           </span>
-          <button
+          {/* <button
             className="btn btn-primary h-[2.2rem] min-h-[2.2rem] mt-auto mx-2"
             onClick={handleSubmit}
             disabled={isLoadingAddOwnerWait}
@@ -79,7 +79,7 @@ export const AddOwners = (multiSigWalletAddress: any) => {
             ) : (
               "Add Signer"
             )}
-          </button>
+          </button> */}
         </div>
         <div className="text-center">
           <span>Enter address you want to add as a signer</span>

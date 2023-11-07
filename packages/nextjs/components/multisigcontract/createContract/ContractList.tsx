@@ -25,7 +25,6 @@ export const ContractList = (myAddress: any) => {
             <tr>
               <th className="bg-primary">Contract Address</th>
               <th className="bg-primary">Confirmations required</th>
-              <th className="bg-primary">Owner</th>
               <th className="bg-primary">Balance</th>
               <th className="bg-primary">Select wallet</th>
             </tr>
@@ -50,9 +49,6 @@ export const ContractList = (myAddress: any) => {
                           <Address address={contract.contractAddress} />
                         </td>
                         <td className="text-center">{Number(contract.requiredConfirmations)}</td>
-                        <td className="text-center">
-                          <Address address={contract.owner} />
-                        </td>
                         <td className="text-center">
                           <Balance className="text-xl" address={contract.contractAddress} />
                         </td>
