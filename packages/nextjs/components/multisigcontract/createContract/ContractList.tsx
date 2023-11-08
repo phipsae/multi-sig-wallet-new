@@ -53,7 +53,7 @@ export const ContractList = (myAddress: any) => {
             </tr>
           </thead>
         </table>
-        <div style={{ maxHeight: "250px", overflowY: "auto" }}>
+        <div style={{ maxHeight: "300px", overflowY: "auto" }}>
           <table className="table w-full ">
             <tbody>
               {!multiSigContracts || !isOwner() ? (
