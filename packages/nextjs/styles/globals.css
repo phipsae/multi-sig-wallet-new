@@ -2,6 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.bg-blue-100 {
+  background-color: #b3d9ff !important;
+}
+
 :root,
 [data-theme] {
   background: hsl(var(--b2));

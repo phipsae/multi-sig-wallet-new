@@ -73,7 +73,7 @@ export function FundContract(multiSigWalletAddress: any) {
           </button>
         </div>
         <div className="flex mb-4 justify-center items-center">
-          <span>Fund the contract with Ether</span>
+          <span>Fund Multi Sig Wallet</span>
         </div>
       </div>
     </>

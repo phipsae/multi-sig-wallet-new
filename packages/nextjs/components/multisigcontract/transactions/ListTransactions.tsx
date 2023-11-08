@@ -130,10 +130,7 @@ export const ListTransactions = (multiSigWalletAddress: any) => {
         successMessage="Transaction successfully deleted"
         errorMessage="Transaction couldn't be deleted"
       />
-      <div className="mt-8">
-        <div className="text-center mb-4">
-          <span className="block text-2xl font-bold">📃 Transactions List</span>
-        </div>
+      <div className="">
         <div className="overflow-x-auto shadow-lg">
           <table className="table table-zebra w-full">
             <thead>
@@ -147,105 +144,110 @@ export const ListTransactions = (multiSigWalletAddress: any) => {
                 <th className="bg-primary">Delete Transaction</th>
               </tr>
             </thead>
-            <tbody>
-              {!getTransactions || getTransactions.length === 0 || !nonExecutedTransactions() ? (
-                <tr>
-                  <td colSpan={6} className="text-center">
-                    No open transactions yet
-                  </td>
-                </tr>
-              ) : (
-                getTransactions?.map((tx, index) => {
-                  if (tx.executed == false) {
-                    return (
-                      <tr key={index}>
-                        <td className="text-center">
-                          <Address address={tx.to} />
-                        </td>
-                        <td className="text-center">{formatEther(tx.value)}</td>
-                        <td className="text-center">
-                          {Number(tx.numConfirmations)}/{Number(confirmationsRequired)}
-                        </td>
-                        <td className="text-center">
-                          <button
-                            disabled={!confirmTransaction}
-                            onClick={() =>
-                              confirmTransaction({
-                                args: [BigInt(index)],
-                              })
-                            }
-                          >
-                            {isLoadingConfirmTransactionWait ? (
-                              <div className="flex  justify-center">
-                                <Spinner width="" height=""></Spinner>
-                              </div>
-                            ) : (
-                              <CheckIcon className="h-4 w-4" />
-                            )}
-                          </button>
-                        </td>
-                        <td className="text-center">
-                          <button
-                            disabled={isLoadingConfirmTransactionWait}
-                            onClick={() =>
-                              revokeConfirmation({
-                                args: [BigInt(index)],
-                              })
-                            }
-                          >
-                            {isLoadingRevokeWait ? (
-                              <div className="flex  justify-center">
-                                <Spinner width="" height=""></Spinner>
-                              </div>
-                            ) : (
-                              <XMarkIcon className="h-4 w-4" />
-                            )}
-                          </button>
-                        </td>
-                        <td className="text-center">
-                          <button
-                            hidden={tx.numConfirmations < Number(confirmationsRequired)}
-                            // disabled={!executeTransaction}
-                            onClick={() =>
-                              executeTransaction({
-                                args: [BigInt(index)],
-                              })
-                            }
-                          >
-                            {isLoadingExecuteWait ? (
-                              <div className="flex  justify-center">
-                                <Spinner width="" height=""></Spinner>
-                              </div>
-                            ) : (
-                              <PaperAirplaneIcon className="h-4 w-4" />
-                            )}
-                          </button>
-                        </td>
-                        <td className="text-center">
-                          <button
-                            // disabled={!deleteTransaction}
-                            onClick={() =>
-                              deleteTransaction({
-                                args: [BigInt(index)],
-                              })
-                            }
-                          >
-                            {isDeleteLoadingWait ? (
-                              <div className="flex  justify-center">
-                                <Spinner width="" height=""></Spinner>
-                              </div>
-                            ) : (
-                              <TrashIcon className="h-4 w-4" />
-                            )}
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  }
-                })
-              )}
-            </tbody>
           </table>
+          <div style={{ maxHeight: "250px", overflowY: "auto" }}>
+            <table className="table table-zebra w-full">
+              {/* style={{ maxHeight: "250px", overflowY: "auto" } */}
+              <tbody>
+                {!getTransactions || getTransactions.length === 0 || !nonExecutedTransactions() ? (
+                  <tr>
+                    <td colSpan={7} className="text-center">
+                      No open transactions yet
+                    </td>
+                  </tr>
+                ) : (
+                  getTransactions?.map((tx, index) => {
+                    if (tx.executed == false) {
+                      return (
+                        <tr key={index}>
+                          <td className="text-center">
+                            <Address address={tx.to} />
+                          </td>
+                          <td className="text-center">{formatEther(tx.value)}</td>
+                          <td className="text-center">
+                            {Number(tx.numConfirmations)}/{Number(confirmationsRequired)}
+                          </td>
+                          <td className="text-center">
+                            <button
+                              disabled={!confirmTransaction}
+                              onClick={() =>
+                                confirmTransaction({
+                                  args: [BigInt(index)],
+                                })
+                              }
+                            >
+                              {isLoadingConfirmTransactionWait ? (
+                                <div className="flex  justify-center">
+                                  <Spinner width="" height=""></Spinner>
+                                </div>
+                              ) : (
+                                <CheckIcon className="h-4 w-4" />
+                              )}
+                            </button>
+                          </td>
+                          <td className="text-center">
+                            <button
+                              disabled={isLoadingConfirmTransactionWait}
+                              onClick={() =>
+                                revokeConfirmation({
+                                  args: [BigInt(index)],
+                                })
+                              }
+                            >
+                              {isLoadingRevokeWait ? (
+                                <div className="flex  justify-center">
+                                  <Spinner width="" height=""></Spinner>
+                                </div>
+                              ) : (
+                                <XMarkIcon className="h-4 w-4" />
+                              )}
+                            </button>
+                          </td>
+                          <td className="text-center">
+                            <button
+                              hidden={tx.numConfirmations < Number(confirmationsRequired)}
+                              // disabled={!executeTransaction}
+                              onClick={() =>
+                                executeTransaction({
+                                  args: [BigInt(index)],
+                                })
+                              }
+                            >
+                              {isLoadingExecuteWait ? (
+                                <div className="flex  justify-center">
+                                  <Spinner width="" height=""></Spinner>
+                                </div>
+                              ) : (
+                                <PaperAirplaneIcon className="h-4 w-4" />
+                              )}
+                            </button>
+                          </td>
+                          <td className="text-center">
+                            <button
+                              // disabled={!deleteTransaction}
+                              onClick={() =>
+                                deleteTransaction({
+                                  args: [BigInt(index)],
+                                })
+                              }
+                            >
+                              {isDeleteLoadingWait ? (
+                                <div className="flex  justify-center">
+                                  <Spinner width="" height=""></Spinner>
+                                </div>
+                              ) : (
+                                <TrashIcon className="h-4 w-4" />
+                              )}
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    }
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>

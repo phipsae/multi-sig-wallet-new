@@ -597,7 +597,7 @@ const deployedContracts = {
   },
   11155111: {
     MultiSigFactory: {
-      address: "0xB00fb01aEa521Af22CefAaD0aeAB02006f184A72",
+      address: "0x7606f0B1E2ef29F579B3EFf99f5609813ec60F9d",
       abi: [
         {
           anonymous: false,
@@ -625,6 +625,11 @@ const deployedContracts = {
               name: "_requiredConfirmations",
               type: "uint256",
             },
+            {
+              internalType: "address[]",
+              name: "_signers",
+              type: "address[]",
+            },
           ],
           name: "createContract",
           outputs: [],
@@ -637,11 +642,6 @@ const deployedContracts = {
           outputs: [
             {
               components: [
-                {
-                  internalType: "address",
-                  name: "owner",
-                  type: "address",
-                },
                 {
                   internalType: "address",
                   name: "contractAddress",
@@ -683,11 +683,6 @@ const deployedContracts = {
           outputs: [
             {
               internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-            {
-              internalType: "address",
               name: "contractAddress",
               type: "address",
             },
@@ -718,53 +713,17 @@ const deployedContracts = {
           stateMutability: "view",
           type: "function",
         },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_contractAddress",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "_signerToRemove",
-              type: "address",
-            },
-          ],
-          name: "removeSigners",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_contractAddress",
-              type: "address",
-            },
-            {
-              internalType: "address[]",
-              name: "_newSigners",
-              type: "address[]",
-            },
-          ],
-          name: "updateSigners",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
       ],
     },
     MultiSigWallet: {
-      address: "0x50344e518CE9749C4A2d146D168A3c8C134C3dE2",
+      address: "0xcEDFFc65B9298D4b728082467738d825Be367C12",
       abi: [
         {
           inputs: [
             {
-              internalType: "address",
-              name: "_creator",
-              type: "address",
+              internalType: "address[]",
+              name: "_owners",
+              type: "address[]",
             },
             {
               internalType: "uint256",
@@ -898,19 +857,6 @@ const deployedContracts = {
           ],
           name: "SubmitTransaction",
           type: "event",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_owner",
-              type: "address",
-            },
-          ],
-          name: "addOwner",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
         },
         {
           inputs: [
@@ -1155,19 +1101,6 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "_owner",
-              type: "address",
-            },
-          ],
-          name: "removeOwner",
-          outputs: [],
-          stateMutability: "nonpayable",
           type: "function",
         },
         {

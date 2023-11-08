@@ -47,17 +47,13 @@ export const SubmitTransaction = (multiSigWalletAddress: any) => {
   return (
     <>
       <div className="flex flex-col">
-        <div className="text-center mb-4">
-          <span className="block text-1xl font-bold"> ✉️ Submit a new Transaction</span>
-        </div>
-
         <div className="flex flex-col gap-4 mb-4 justify-center items-center">
           <div className="flex flex-row">
             <span className="w-7/8">
               <AddressInput value={to ?? ""} onChange={to => setTo(to)} placeholder="Address Receiver" />
             </span>
             <span className="w-[150px] mx-5">
-              <EtherInput value={amount} onChange={amount => setAmount(amount)} placeholder="Amount" />
+              <EtherInput value={amount} onChange={amount => setAmount(amount)} placeholder="#" />
             </span>
           </div>
           <button
@@ -73,9 +69,9 @@ export const SubmitTransaction = (multiSigWalletAddress: any) => {
                 <Spinner width="100" height="100"></Spinner>
               </div>
             ) : (
-              <div className="flex flex-row w-[100px]">
+              <div className="flex flex-row w-full">
                 <EnvelopeIcon className="h-4 w-4" />
-                <span className="mx-3"> Submit</span>
+                <span className="mx-3"> Submit a new transaction</span>
               </div>
             )}
           </button>

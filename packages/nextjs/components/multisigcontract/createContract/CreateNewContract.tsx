@@ -17,9 +17,6 @@ export const CreateNewContract = () => {
 
   return (
     <>
-      {/* <button onClick={() => console.log(signers.length)}> Console log Signers</button>
-      <button onClick={() => console.log(confirmations >= signers.length)}> Confirmation</button> */}
-
       <div>
         {confirmationsSet === false ? (
           <SetConfirmations />

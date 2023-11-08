@@ -5,7 +5,7 @@ import { useAccount } from "wagmi";
 import { AddOwners } from "~~/components/multisigcontract/assetsOwners/AddOwners";
 import { FundContract } from "~~/components/multisigcontract/assetsOwners/FundContract";
 import { MultiSigWalletOverview } from "~~/components/multisigcontract/assetsOwners/MultiSigWalletOverview";
-import { ShowOwnersRemove } from "~~/components/multisigcontract/assetsOwners/ShowOwnersRemove";
+import { ShowSigners } from "~~/components/multisigcontract/assetsOwners/ShowSigners";
 import { ContractList } from "~~/components/multisigcontract/createContract/ContractList";
 
 const AssetsOwners: NextPage = () => {
@@ -41,7 +41,7 @@ const AssetsOwners: NextPage = () => {
               <FundContract multiSigWalletAddress={multiSigWalletAddress} />
             </div>
             <div className="flex justify-center">
-              <ShowOwnersRemove multiSigWalletAddress={multiSigWalletAddress} />
+              <ShowSigners multiSigWalletAddress={multiSigWalletAddress} />
             </div>
             <div className="flex justify-center mt-10">
               <AddOwners multiSigWalletAddress={multiSigWalletAddress} />
