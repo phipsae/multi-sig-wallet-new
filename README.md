@@ -6,13 +6,16 @@ built with Scaffolf-ETH2: <a href="https://docs.scaffoldeth.io">Documentation</a
 
 📲🌐 The decentralized application (dApp) is organized into two main sections: "➕🔐 Create a New Multi-Sig Wallet" and " 💳💬Transactions".
 
-In the "Create a New Multi-Sig Wallet" section, you have the ability to set up new multi-signature wallets—these are wallets that require multiple approvals before any transaction can be executed, enhancing security. Here, you'll also find a dashboard where you can view all the multi-signature wallets you've created, along with a list of the signer addresses for each wallet. This provides a clear overview of who holds signing authority in each wallet.
+✨🔐💼 In the "Create a New Multi-Sig Wallet" section, you have the ability to set up new multi-signature wallets—these are wallets that require multiple approvals before any transaction can be executed, enhancing security.
+📊👀 Here, you'll also find a dashboard where you can view all the multi-signature wallets you've created, along with a list of the signer addresses for each wallet. This provides a clear overview of who holds signing authority in each wallet.
 
-![Create Multi Sig Wallet tab](https://github.com/phipsae/multi-sig-wallet-new/blob/main/Screenshot%202023-11-03%20at%2022.32.44.png)
+![Create Multi Sig Wallet tab](https://github.com/phipsae/multi-sig-wallet-new/blob/main/packages/nextjs/components/assets/imagesReadMe/createContractTab.png)
 
-Moving on to the "Transactions" tab, this section is designed to manage the financial operations of your multi-signature wallets. Here, you can deposit funds into your multi-signature wallets. The interface allows you to submit new transactions, which must then be confirmed by the required number of signers as set up in the wallet creation. You also have the flexibility to cancel your confirmation before a transaction is finalized, should the need arise. In case a transaction is no longer needed or was created in error, you have the option to delete it. Once all necessary approvals are in place, you can execute the transaction, completing the process. This tab ensures that you have full control over the transaction process, from initiation to completion, while also maintaining rigorous security standards.
+💸➡️📃Moving on to the "Transactions" tab, this section is designed to manage the financial operations of your multi-signature wallets.
+📝✅🚫 Here, you can deposit funds into your multi-signature wallets. The interface allows you to submit new transactions, which must then be confirmed by the required number of signers as set up in the wallet creation. You also have the flexibility to cancel your confirmation before a transaction is finalized, should the need arise. In case a transaction is no longer needed or was created in error, you have the option to delete it ❌🗑️ . Once all necessary approvals are in place, you can execute the transaction 🏁🔏, completing the process.
+This tab ensures that you have full control 🎮 over the transaction process, from ⏳ initiation to ✅ completion, while also maintaining 🔒 rigorous security standards.
 
-![Transactions tab](https://github.com/phipsae/multi-sig-wallet-new/blob/main/Screenshot%202023-11-03%20at%2022.32.44.png)
+![Transactions tab](https://github.com/phipsae/multi-sig-wallet-new/blob/main/packages/nextjs/components/assets/imagesReadMe/transactionsTab.png)
 
 <h2>Scaffolf-ETH2:</h2>
 
