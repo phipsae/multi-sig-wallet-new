@@ -2,7 +2,7 @@
 
 built with Scaffolf-ETH2: <a href="https://docs.scaffoldeth.io">Documentation</a> | <a href="https://scaffoldeth.io">Website</a>
 
-Create multiple multi signature wallets, see their details, sign and execute transactions (dapp, still in development).
+Create multiple MultiSig-Wallets, fund them, sign and execute transactions and make sure your funds are safe.
 
 Overview of the transactions tab with one open transaction:
 ![Debug Contracts tab](https://github.com/phipsae/multi-sig-wallet-new/blob/main/Screenshot%202023-11-03%20at%2022.32.44.png)
